@@ -67,6 +67,7 @@ public class Prime {
         }
         // Odd numbers
         int limit = (int)Math.sqrt(number);
+        //as odd number cannot divede a even number, only dividing to odd numbers again
         for (int i = 3; i <= limit; i += 2) {
             if (number % i == 0) {
                 return false;
