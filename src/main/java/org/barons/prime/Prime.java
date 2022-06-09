@@ -3,6 +3,7 @@ package org.barons.prime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * User: Oktay CEKMEZ
@@ -39,10 +40,9 @@ public class Prime {
 
     public static Map<Integer, Integer> getPrimeFactors(int number) {
         int absNumber = Math.abs(number);
-
         Map<Integer, Integer> primeFactorsMap = new HashMap<Integer, Integer>();
 
-        for (int factor = 2; factor <= absNumber; factor++) {
+        for (int factor = 2; factor <= number/2; factor++) {
             while (absNumber % factor == 0) {
                 Integer power = primeFactorsMap.get(factor);
                 if (power == null) {
@@ -55,6 +55,18 @@ public class Prime {
         }
 
         return primeFactorsMap;
+    }
+
+
+    public static int getDividingCount(int x){
+       Map<Integer, Integer> factors =  getPrimeFactors(x);
+
+       //2^3, 3^1
+        int dividings = 1;
+        for(int val : factors.values()){
+            dividings*=val + 1;
+        }
+        return dividings -1;
     }
 
     public static boolean isPrime(int number) {
@@ -78,6 +90,12 @@ public class Prime {
 
     public static void main(String[] args) {
         System.out.println(isPrime(5));
+
+        //12
+
+        System.out.println(getDividingCount(12));//2,3,4,6,12
+        System.out.println(getDividingCount(16));//2,4,8,16
+
     }
 
 }
